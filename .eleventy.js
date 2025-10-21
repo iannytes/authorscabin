@@ -1,4 +1,10 @@
 module.exports = function(eleventyConfig) {
+ 
+  eleventyConfig.addCollection("post", (collectionApi) => {
+    return collectionApi.getFilteredByGlob("src/posts/*.md");
+  });
+
+  // existing code...
   eleventyConfig.addPassthroughCopy({"src/assets": "assets"});
   eleventyConfig.addPassthroughCopy({"src/admin": "admin"});
   eleventyConfig.addPassthroughCopy({"src/img": "img"});
@@ -6,8 +12,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"src/site.webmanifest": "site.webmanifest"});
 
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
-
-  // YouTube embed shortcode: {% youtube "VIDEO_ID" %}
   eleventyConfig.addShortcode("youtube", function(id) {
     return `<div class="video-embed">
       <iframe src="https://www.youtube.com/embed/${id}" title="YouTube video"
@@ -16,18 +20,12 @@ module.exports = function(eleventyConfig) {
     </div>`;
   });
 
-  // Simple date filter
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return new Date(dateObj).toLocaleDateString("en-US", {year:"numeric", month:"long", day:"numeric"});
   });
 
   return {
-    dir: {
-      input: "src",
-      includes: "_includes",
-      data: "_data",
-      output: "_site"
-    },
+    dir: { input: "src", includes: "_includes", data: "_data", output: "_site" },
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk"
   };
