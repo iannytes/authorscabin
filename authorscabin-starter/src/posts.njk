@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+title: Blog
+permalink: /posts/index.html
+---
+<h1>All Posts</h1>
+<ul class="post-list">
+{% for post in collections.post | reverse %}
+  <li>
+    <a href="{{ post.url }}" class="post-item">
+      <h3>{{ post.data.title }}</h3>
+      <p>{{ post.data.description or post.templateContent | striptags | truncate(140) }}</p>
+      <span class="post-date">{{ post.date | readableDate }}</span>
+    </a>
+  </li>
+{% endfor %}
+</ul>

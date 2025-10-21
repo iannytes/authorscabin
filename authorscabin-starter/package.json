@@ -1,0 +1,13 @@
+{
+  "name": "authorscabin",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx @11ty/eleventy --serve --quiet",
+    "build": "npx @11ty/eleventy",
+    "preview": "npx @11ty/eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

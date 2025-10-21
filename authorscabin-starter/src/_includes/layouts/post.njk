@@ -1,0 +1,21 @@
+---
+layout: layouts/base.njk
+---
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ title }}</h1>
+    <p class="post-meta">{{ date | readableDate }} · {{ tags | join(", ") }}</p>
+  </header>
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+  <hr class="section">
+  <section class="post-cta">
+    <h2>Enjoyed this post?</h2>
+    <p>Come chat in our Discord, or catch our latest videos on YouTube.</p>
+    <p>
+      <a class="button discord" href="{{ site.social.discord }}" target="_blank" rel="noopener">Join Discord</a>
+      <a class="button" href="{{ site.social.youtube }}" target="_blank" rel="noopener">Watch on YouTube</a>
+    </p>
+  </section>
+</article>

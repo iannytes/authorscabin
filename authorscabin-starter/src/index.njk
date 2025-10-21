@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+title: Authors Cabin
+description: Cozy craft notes for writers — articles, critiques, and reviews.
+---
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Welcome to the Cabin</h1>
+    <p>A warm nook for writing craft, critique, and tools.</p>
+    <a class="button discord" href="{{ site.social.discord }}" target="_blank" rel="noopener">Join our Discord</a>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Latest Posts</h2>
+  <ul class="post-list">
+  {% for post in collections.post | reverse | slice(0,5) %}
+    <li>
+      <a href="{{ post.url }}" class="post-item">
+        <h3>{{ post.data.title }}</h3>
+        <p>{{ post.data.description or post.templateContent | striptags | truncate(140) }}</p>
+        <span class="post-date">{{ post.date | readableDate }}</span>
+      </a>
+    </li>
+  {% endfor %}
+  </ul>
+  <p><a class="button" href="/posts/">View all posts</a></p>
+</section>
+
+<section class="cta-cards">
+  <a class="card" href="{{ site.social.youtube }}" target="_blank" rel="noopener">
+    <h3>Our YouTube</h3>
+    <p>Critiques, craft talk, and cozy streams.</p>
+  </a>
+  <a class="card" href="{{ site.social.instagram }}" target="_blank" rel="noopener">
+    <h3>Instagram</h3>
+    <p>Behind-the-scenes and short tips.</p>
+  </a>
+  <a class="card discord" href="{{ site.social.discord }}" target="_blank" rel="noopener">
+    <h3>Join the Discord</h3>
+    <p>Pull up a chair by the hearth and say hi.</p>
+  </a>
+</section>
