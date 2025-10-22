@@ -2,10 +2,13 @@ backend:
   name: git-gateway
   branch: main
 
+site_url: "https://authorscabin.com"
+
 media_folder: "src/img/uploads"
 public_folder: "/img/uploads"
 
-site_url: "https://authorscabin.com"
+# Optional: creates PRs for edits so you can review before publish
+editorial_workflow: true
 
 collections:
   - name: "posts"
@@ -13,24 +16,33 @@ collections:
     folder: "src/posts"
     create: true
     slug: "{{slug}}"
+    extension: "md"
+    # Write JSON front matter instead of YAML
+    format: "frontmatter"
+    frontmatter_delimiter: "---json"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text", required: false}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
   - name: "pages"
     label: "Pages"
     files:
       - file: "src/about.njk"
         label: "About Page"
         name: "about"
+        format: "frontmatter"
+        frontmatter_delimiter: "---json"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
       - file: "src/contact.njk"
         label: "Contact Page"
         name: "contact"
+        format: "frontmatter"
+        frontmatter_delimiter: "---json"
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
