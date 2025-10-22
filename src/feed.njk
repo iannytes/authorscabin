@@ -7,13 +7,18 @@ eleventyExcludeFromCollections: true
   <title>{{ site.title }}</title>
   <link href="{{ site.url }}/feed.xml" rel="self"/>
   <link href="{{ site.url }}"/>
-  <updated>{{ collections.post | last | date | toUTCString }}</updated>
+
+  {# Safely compute the "updated" timestamp: latest post date or now #}
+  {% set latest = (collections.post | reverse | first) %}
+  <updated>{{ (latest and latest.date) | rssDate }}</updated>
+
   <id>{{ site.url }}/</id>
+
   {% for post in collections.post | reverse %}
   <entry>
     <title>{{ post.data.title }}</title>
     <link href="{{ site.url }}{{ post.url }}"/>
-    <updated>{{ post.date | date | toUTCString }}</updated>
+    <updated>{{ post.date | rssDate }}</updated>
     <id>{{ site.url }}{{ post.url }}</id>
     <content type="html"><![CDATA[{{ post.templateContent | safe }}]]></content>
   </entry>

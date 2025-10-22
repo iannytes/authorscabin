@@ -30,7 +30,21 @@ eleventyConfig.addFilter("date", (dateObj, format = "iso") => {
       day: "numeric",
     });
   });
+function coerceDate(value) {
+  if (!value) return new Date();
+  const d = new Date(value);
+  return isNaN(d) ? new Date() : d;
+}
 
+// Use this anywhere in templates for RSS-safe UTC
+eleventyConfig.addFilter("rssDate", (value) => {
+  return coerceDate(value).toUTCString();
+});
+
+// ISO 8601 helper (if you want it elsewhere)
+eleventyConfig.addFilter("isoDate", (value) => {
+  return coerceDate(value).toISOString();
+});
   // Shortcodes
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
   eleventyConfig.addShortcode("youtube", function (id) {
