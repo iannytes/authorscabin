@@ -3,13 +3,14 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("post", (collectionApi) => {
     return collectionApi.getFilteredByGlob("src/posts/*.md");
   });
-  eleventyConfig.addFilter("toUTCString", (dateObj) => {
+eleventyConfig.addFilter("toUTCString", (dateObj) => {
   try {
     return new Date(dateObj).toUTCString();
   } catch (err) {
     console.error("Invalid date passed to toUTCString filter:", dateObj);
     return "";
   }
+}
   // existing code...
   eleventyConfig.addPassthroughCopy({"src/assets": "assets"});
   eleventyConfig.addPassthroughCopy({"src/admin": "admin"});
