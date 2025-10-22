@@ -13,7 +13,16 @@ module.exports = function (eleventyConfig) {
       return "";
     }
   });
-
+eleventyConfig.addFilter("date", (dateObj, format = "iso") => {
+  const d = new Date(dateObj);
+  if (format === "iso") return d.toISOString();
+  if (format === "utc") return d.toUTCString();
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+});
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return new Date(dateObj).toLocaleDateString("en-US", {
       year: "numeric",
