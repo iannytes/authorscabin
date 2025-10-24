@@ -16,34 +16,6 @@
 </head>
 <body class="bg">
   <header class="site-header">
-    <a class="logo" href="/"><img src="/img/logo.png" alt="{{ site.title }}"></a>
-
-  <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
-    <span class="sr-only">Toggle navigation</span>
-    ☰
-  </button>
-
-  <nav id="site-nav" class="site-nav">
-    <ul>
-      <li><a href="/posts/">Posts</a></li>
-      <li><a href="/about/">About</a></li>
-      <!-- Social links will be centralized later -->
-    </ul>
-  </nav>
-</header>
-
-<script>
-  (function () {
-    const btn = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('site-nav');
-    if (!btn || !nav) return;
-    btn.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      nav.classList.toggle('open', !open);
-    });
-  }());
-</script>
     <div class="container header-inner">
       <a href="/" class="brand">
         <img src="/img/logo.jpg" alt="Authors Cabin logo" class="logo" />
